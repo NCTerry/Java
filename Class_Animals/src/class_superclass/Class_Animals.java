@@ -1,5 +1,5 @@
 /*
-http://www.newthinktank.com/2012/02/java-video-tutorial-14/
+http://www.newthinktank.com/2012/02/java-video-tutorial-14
  */
 
 package class_superclass;
@@ -12,13 +12,13 @@ public class Class_Animals {
      */
     public static void main(String[] args){
 		
-        // I create a Animal object named genericAnimal
+        // I create a Animal object using Animal class named genericAnimal
         Animal genericAnimal = new Animal();
         System.out.println(genericAnimal.getName());
         System.out.println(genericAnimal.favFood);
         System.out.println("Line 19\n\n");
 
-        // I create a Cat class like any other
+        // I create a Cat using class like any other
         Cat morris = new Cat("Morris", "Tuna", "Rubber Mouse");
 
         // Print out the name, favFood and favToy
@@ -71,19 +71,19 @@ public class Class_Animals {
             // It could tell with walkaround because both have the walkARound
             // function.
         //System.out.println("Line 68: " + randAnimal.favToy);
-        System.out.println("Line 72: " + tempCat.favToy);
+        System.out.println("Line 74: " + tempCat.favToy);
 
         
         
         // You could also cast the object directly like this
-        System.out.println("Line 75: " + ((Cat) randAnimal).favToy);
+        System.out.println("Line 79: " + ((Cat) randAnimal).favToy);
 
         // You can use instanceof to check what type of object
         // you have. This results in a positive for Animal 
         // and for Cat
         if (randAnimal instanceof Cat)
         {
-                System.out.println("Line 82: " + randAnimal.getName() + " is a Cat");
+                System.out.println("Line 86: " + randAnimal.getName() + " is a Cat");
         }
 
     }
