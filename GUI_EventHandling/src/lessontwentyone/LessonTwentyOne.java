@@ -125,6 +125,7 @@ public class LessonTwentyOne extends JFrame{
             
             
             // Track the mouse if it is inside of the panel
+            // Relays details if you click on the panel.
             ListenForMouse lForMouse = new ListenForMouse();
 
             thePanel.addMouseListener(lForMouse);

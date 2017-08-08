@@ -2,8 +2,6 @@
 http://www.newthinktank.com/2012/03/java-video-tutorial-30/
 
 
-You asked for a giant tutorial that covers every Swing component, and in this tutorial I deliver. This is a big Java Swing Tutorial!
-
 Here I create a complicated Java Swing layout. I set up everything in a GridBagLayout, but add a Box and  FlowLayout to it. I then show you how to use all of these components: JLabel, JTextField, JComboBox, JSpinner, JSlider, JRadioButton, ButtonGroup, JCheckBox, JTextArea, JScrollPane, ChangeListener, pack and more.
  */
 package swing_general;
@@ -12,9 +10,6 @@ package swing_general;
  *
  * @author Tracksta6
  */
-
-
-
 
 
 

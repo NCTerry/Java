@@ -1,5 +1,5 @@
 
-package classes_collection;
+package arraylists;
 
 // Collection classes were created to make it easy to keep track 
 // of groups of objects. An ArrayList differs from an array in

@@ -6,6 +6,9 @@ There are inherent flaws that for certain decimal operations using a double, tha
 We need a built in function BigDecimal
 */
 import java.math.BigDecimal;
+import java.math.RoundingMode; // For rounding infinite decimal division.
+
+
 
 public class NormCalcForm extends javax.swing.JFrame {
 
@@ -477,14 +480,18 @@ public class NormCalcForm extends javax.swing.JFrame {
                 txtDisplay.setText(answer);
                 break;            
             //-------------------------------------
-                DIVIDE DOENT TOTALL WORK. SOME DONT
-                        9/5 works.
-                                11/7 doesn't work.'
+                //DIVIDE DOENT TOTALL WORK. SOME DONT
+                //      9/5 works.
+                //            11/7 doesn't work.'
+                // We imported the rounding method and used it below for 'result'
+                // This java does not account for infinite decimals
+                // We get an infinite decimal on certain divisions
+                
             case "/":
                 par1 = BigDecimal.valueOf(mainNumber1);
                 par2 = BigDecimal.valueOf(mainNumber2);
                 
-                result = par1.divide(par2); 
+                result = par1.divide(par2, 2, RoundingMode.HALF_UP); 
                 answer = String.valueOf(result);
                 txtDisplay.setText(answer);
                 break;                

@@ -40,6 +40,7 @@ public class Files_General extends JFrame{
 		// Make a file and define where to save it in the file system
 		randomFile2 = new File("/Users/Tracksta6/Dropbox/Computer Science/Java/Files_General/random2.txt");
 		
+                // =======================================================
 		// createNewFile and getCanonicalPath have to be called in 
 		// a try block to catch IOException
                 // this must be caught, or else it wont work
@@ -52,14 +53,15 @@ public class Files_General extends JFrame{
 			
 			// Returns the path for the file
 			filePath = randomFile.getCanonicalPath();
-			
+		
+                // =======================================================
 		} catch (IOException e) {
 			
 			// You have to catch the IOException
 			e.printStackTrace();
-			
 		}
 		
+                // =======================================================
 		// Check to see if the file exists in the current directory
 		if (randomFile.exists()){
 			
@@ -109,30 +111,38 @@ public class Files_General extends JFrame{
 			
                         // method created down below
 			new Files_General();
-			
+                        
+		// =======================================================	
 		} else {
 			
 			System.out.println("File Doesn't Exist");
 			
 		}
-		
+                
+		// =======================================================
 		// You call delete to delete a file
 		if(randomFile.delete()){
 			System.out.println("File Deleted");
 		}
-		
+		// =======================================================
 		// I could get an array of File objects from the directory
 		File[] filesInDir = randomDir.listFiles();
-		
+                
+		// =======================================================
 		for(File fileName : filesInDir){
 			fileName.delete();
 		}
+                
+                // =======================================================
                 System.out.println("Just deleted the new files in the directory");
 		
+                // =======================================================
 		// You can only delete a directory if it is empty
 		if(randomDir.delete()){
 			System.out.println("\nDirectory Deleted");
 		}
+                
+                // =======================================================
                 System.out.println("You can only delete a directory if it is empty\n"
                         + "This directory isn't deleted since it holds the java files too.");
 		

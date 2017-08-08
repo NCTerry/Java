@@ -89,7 +89,7 @@ public class LinkedList_Main {
         // removeFirst() removes the first element
         // removeLast() removes the last element
         // removeFirstOccurrence(Object) removes the  
-        // first Object that matches what you passed
+        // first Object that matches what you passed in
         
 //========================================================
         // You can use the enhanced for to print them out

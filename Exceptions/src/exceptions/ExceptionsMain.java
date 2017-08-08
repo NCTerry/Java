@@ -73,6 +73,7 @@ public class ExceptionsMain {
             System.out.println("\tYou can't do that.");
             System.out.println("\t"+e.getMessage());//BuiltIn error message
             System.out.println("\t"+e.toString());//Full built error message
+            System.out.println("\n\n");
         }
     } //End divideByZero
     // ========================================
@@ -100,7 +101,6 @@ public class ExceptionsMain {
     // ========================================
     // ========================================
     // ========================================
-    
     public static void getAFile(String fileName)
     {
         System.out.println("\n\nMethod getAFile");

@@ -21,11 +21,9 @@ public class MethodsMain {
 //================================================
 //===main method 1=============================================
     /*
-    This is the main method, basically the main funciton.
+    This is the main method, basically the main function.
         void = not returning anything
     */
-    
-    
     
     
     public static void main(String[] args) {
@@ -60,11 +58,7 @@ public class MethodsMain {
 
     }
     
-    
-    
-    
-    
-    
+   
 //================================================
 //================================================
 //================================================
@@ -99,6 +93,10 @@ public class MethodsMain {
     public static int getRandomNum()
     {
         //randomNumber was created globally
+        /*
+        I believe that the *6 is saying that the random will be 1-5
+            The number will be random, up to 6
+        */
         randomNumber = (int) (Math.random() * 6);
         return randomNumber;
         

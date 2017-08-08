@@ -85,16 +85,20 @@ public class Regex_Main{
             */
             // Grab any string that contains 1 or more {
             // Next 2 lines are the same. The + is shorthand for oneORmore
-            System.out.println("\nLine 82: Look for 1 or more '{'\n"
-                    + "Same thing run twice.");
+            // Looks like the first checker is a bit confusing, it uses a monkey bracket
+            //      but we are looking for a left-side monkey bracket as well. 
+            System.out.println(""
+                    + "\nLine 82: Look for 1 or more '{'"
+                    + "\nSame thing run twice.");
             regexChecker("(\\{{1,})", strangeString);
             regexChecker("(\\{+)", strangeString);
 
             
             // Get anything that occurs 3 times except newline
             // .  Anything but newline
-            System.out.println("\nLine 84: Search string for 3 or ANYTHING in order.\n"
-                    + " basically just spitting back 3x3 chars in string");
+            System.out.println(""
+                    + "\nLine 84: Search string for 3 of ANYTHING in order."
+                    + "\nbasically just spitting back 3x3 chars in string");
             regexChecker(".{3}", strangeString);
             
             
