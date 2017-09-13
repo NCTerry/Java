@@ -10,9 +10,6 @@ import java.util.Arrays;
 //======================================================
 public class Strings_StringBuilders_Main {
 
-    /**
-     * @param args the command line arguments
-     */
     //======================================================
     public static void main(String[] args) {
         // TODO code application logic here
@@ -54,8 +51,7 @@ public class Strings_StringBuilders_Main {
          * 
          * You convert from String to primitives with parse
          * int stringToInt = Integer.parseInt(intString);
-         * parseSort, parseLong, parseByte, parseDouble, 
-         * parseBoolean, parseFloat
+         * parseSort, parseLong, parseByte, parseDouble, parseBoolean, parseFloat
          */
         
 //======================================================

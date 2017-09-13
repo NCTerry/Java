@@ -1,0 +1,223 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\csgray\c100000;}
+\margl1440\margr1440\vieww18400\viewh8220\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs20 \cf2 \cb3 \CocoaLigature0 NOTE: THIS WORKS, BUT TAKES THE LAPTOP 5 MINUTES\
+I TRIED TO LIMIT FROM 50 DOWN TO 5 AND THEY ALL TAKE QUITE A BIT OF TIME.\
+# ======================================================\
+SELECT b.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME, \
+SUM(b.RBI) AS RBI \
+FROM Batting b, Master m \
+Where b.playerID = m.playerID \
+GROUP BY b.playerID, NAME \
+ORDER BY RBI DESC \
+LIMIT 5;\
+\
++-----------+----------------+------+\
+| playerID  | NAME           | RBI  |\
++-----------+----------------+------+\
+| aaronha01 | Hank Aaron     | 2297 |\
+| ruthba01  | Babe Ruth      | 2217 |\
+| rodrial01 | Alex Rodriguez | 2086 |\
+| ansonca01 | Cap Anson      | 2076 |\
+| bondsba01 | Barry Bonds    | 1996 |\
++-----------+----------------+------+\
+5 rows in set (3 min 26.25 sec)\
+\
+\
+\
+# ======================================================\
+SELECT b.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME, \
+SUM(b.HR) AS HR \
+FROM Batting b, Master m \
+Where b.playerID = m.playerID \
+GROUP BY b.playerID, NAME \
+ORDER BY HR DESC \
+LIMIT 10;\
+\
++-----------+----------------+------+\
+| playerID  | NAME           | HR   |\
++-----------+----------------+------+\
+| bondsba01 | Barry Bonds    |  762 |\
+| aaronha01 | Hank Aaron     |  755 |\
+| ruthba01  | Babe Ruth      |  714 |\
+| rodrial01 | Alex Rodriguez |  696 |\
+| mayswi01  | Willie Mays    |  660 |\
+| griffke02 | Ken Griffey    |  630 |\
+| thomeji01 | Jim Thome      |  612 |\
+| sosasa01  | Sammy Sosa     |  609 |\
+| pujolal01 | Albert Pujols  |  591 |\
+| robinfr02 | Frank Robinson |  586 |\
++-----------+----------------+------+\
+10 rows in set (3 min 48.09 sec)\
+\
+\
+\
+# ======================================================\
+SELECT b.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME,\
+SUM(b.AB) AS AB, \
+(SUM(b.h)/SUM(b.AB)) AS AVG \
+FROM Batting b, Master m \
+Where b.playerID = m.playerID \
+GROUP BY b.playerID, NAME\
+HAVING AB > 1000\
+ORDER BY AVG DESC \
+LIMIT 5;\
+\
+\
++-----------+----------------------+-------+--------+\
+| playerID  | NAME                 | AB    | AVG    |\
++-----------+----------------------+-------+--------+\
+| cobbty01  | Ty Cobb              | 11434 | 0.3664 |\
+| barnero01 | Ross Barnes          |  2392 | 0.3591 |\
+| hornsro01 | Rogers Hornsby       |  8173 | 0.3585 |\
+| jacksjo01 | Shoeless Joe Jackson |  4981 | 0.3558 |\
+| meyerle01 | Levi Meyerle         |  1443 | 0.3555 |\
++-----------+----------------------+-------+--------+\
+5 rows in set (3 min 24.36 sec)\
+\
+\
+\
+# ======================================================\
+SELECT b.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME,\
+SUM(b.AB) AS AB, \
+(SUM(b.h)/SUM(b.AB)) AS AVG,\
+(SUM(b.H)+SUM(b.BB)+SUM(b.HBP))/(SUM(b.AB)+SUM(b.BB)+SUM(b.HBP)+COALESCE(SUM(b.SF), 0)) AS OBP \
+FROM Batting b, Master m \
+Where b.playerID = m.playerID \
+GROUP BY b.playerID, NAME\
+HAVING AB > 1000\
+ORDER BY OBP DESC \
+LIMIT 5;\
+\
+-----------+----------------+------+--------+---------------------+\
+| playerID  | NAME           | AB   | AVG    | OBP                 |\
++-----------+----------------+------+--------+---------------------+\
+| willite01 | Ted Williams   | 7706 | 0.3444 | 0.48170856325362765 |\
+| ruthba01  | Babe Ruth      | 8398 | 0.3421 |  0.4739598210035228 |\
+| mcgrajo01 | John McGraw    | 3924 | 0.3336 |  0.4656722517368206 |\
+| hamilbi01 | Billy Hamilton | 6268 | 0.3443 |  0.4551961823966066 |\
+| gehrilo01 | Lou Gehrig     | 8001 | 0.3401 | 0.44735189449445256 |\
++-----------+----------------+------+--------+---------------------+\
+5 rows in set (3 min 28.03 sec)\
+\
+\
+\
+\
+# ======================================================\
+ERROR 1055 (42000): Expression #6 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'lahman2016.f.POS' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by\
+	In many situations we got that error above. We are selecting a new thing: POS\
+	Our SQL needs us to also add that to the GROUP BY\
+	Derek Banas video didn\'92t. \
+\
+SELECT b.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME,\
+SUM(b.AB) AS AB, \
+(SUM(b.h)/SUM(b.AB)) AS AVG,\
+(SUM(b.H)+SUM(b.BB)+SUM(b.HBP))/(SUM(b.AB)+SUM(b.BB)+SUM(b.HBP)+COALESCE(SUM(b.SF), 0)) AS OBP,\
+f.POS AS POS \
+FROM Batting b, Master m, Fielding f\
+Where b.playerID = m.playerID AND b.playerID = f.playerID \
+GROUP BY b.playerID, NAME, POS\
+HAVING AB > 1000\
+ORDER BY OBP DESC \
+LIMIT 5;\
+\
+\
+NOTE I TRIED THIS ONE. LOOKS LIKE IT WORKS, BUT TAKES WAY TOO LONG.\
+\
+\
+# ======================================================\
+\
+HAVE NOT TRIED THIS ONE YET.\
+\
+SELECT b.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME,\
+SUM(b.AB) AS AB, \
+(SUM(b.h)/SUM(b.AB)) AS AVG,\
+((b.H)+(b.BB)+(b.HBP))/((b.AB)+(b.BB)+(b.HBP)+COALESCE(SUM(b.SF), 0)) AS OBP,\
+f.POS AS POS,\
+s.salary,\
+b.yearID \
+FROM Batting b, Master m, Fielding f, Salaries s\
+Where b.playerID = m.playerID AND b.playerID = f.playerID \
+AND b.yearID = 2010 AND s.playerID = b.playerID AND s.yearID = b.yearID\
+GROUP BY b.playerID, NAME, POS\
+HAVING AB > 300\
+ORDER BY OBP DESC \
+LIMIT 5;\
+\
+\
+\
+\
+# ======================================================\
+VIDEO 3\
+https://www.youtube.com/watch?v=mIMxKY_t7J4&list=PLE7E8B7F4856C9B19&index=38\
+# \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+We do not need to include the SUM\'92s in the GROUP BY but we do need the others. Not sure why.\
+# \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+SELECT p.playerID, \
+CONCAT(m.nameFirst, " ", m.nameLast) AS NAME,\
+SUM(p.ER)/SUM(p.IPOuts/3)*9 AS ERA,\
+SUM(p.IPOuts/3) AS IP,\
+m.birthYear AS BirthYear\
+FROM Pitching p, Master m \
+Where p.playerID = m.playerID \
+GROUP BY p.playerID, NAME, BirthYear\
+HAVING (IP >= 1000) AND (BirthYear > 1900)\
+ORDER BY ERA ASC\
+LIMIT 5;\
+\
+\
++-----------+-----------------+--------+-----------+-----------+\
+| playerID  | NAME            | ERA    | IP        | BirthYear |\
++-----------+-----------------+--------+-----------+-----------+\
+| riverma01 | Mariano Rivera  | 2.2085 | 1283.6667 |      1969 |\
+| kershcl01 | Clayton Kershaw | 2.3676 | 1760.0000 |      1988 |\
+| wilheho01 | Hoyt Wilhelm    | 2.5231 | 2254.3332 |      1922 |\
+| fordwh01  | Whitey Ford     | 2.7451 | 3170.3334 |      1928 |\
+| quiseda01 | Dan Quisenberry | 2.7604 | 1043.3332 |      1953 |\
++-----------+-----------------+--------+-----------+-----------+\
+5 rows in set (1 min 46.16 sec)\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+\
+# ======================================================\
+\
+\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+# ======================================================\
+\
+\
+}
